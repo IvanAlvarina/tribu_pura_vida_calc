@@ -303,7 +303,8 @@
 
             const baseProfit = afterRepairValue - (homePrice + renovationCost) - totalHoldingCost - purchaseClosingCost - total_selling_cost;
             // const baseROI = (baseProfit / (homePrice + totalHoldingCost)) * 100;
-            const baseROI = afterRepairValue /  total_cash_needed_v2;
+            // const baseROI = afterRepairValue /  total_cash_needed_v2;
+            const baseROI = (baseProfit /  total_cash_needed_v2) * 100;
 
             // <p>Monthly Loan Interest Only: $${monthlyInterest.toFixed(2)}</p>
             // <p>Total Cash Needed: $${totalCashNeeded.toFixed(2)}</p>`;
@@ -332,13 +333,22 @@
             const scenario2TotalHoldingCost = scenario2TotalMonthlyCost * scenario2HoldingPeriod;
             const scenario2SellingCost = (scenario2ARV * sellingCostPercent) / 100;
 
+            scenario2RenovationCost_v2 = renovationCost * 0.1;
+            scenario2ARV_v2  = afterRepairValue - (afterRepairValue * 0.1);
+            scenarioProjectCost_v2 = totalHoldingCost + (totalHoldingCost * 2);
+
+            
+
             // const baseProfit = afterRepairValue - (homePrice + renovationCost) - totalHoldingCost - purchaseClosingCost - total_selling_cost;
 
             // const scenario2Profit = scenario2ARV - (homePrice + scenario2TotalHoldingCost + scenario2SellingCost);
-            const scenario2Profit = scenario2ARV - (homePrice + scenario2RenovationCost) - scenario2HoldingPeriod - purchaseClosingCost - total_selling_cost;
+            // const scenario2Profit = scenario2ARV - (homePrice + scenario2RenovationCost) - scenario2HoldingPeriod - purchaseClosingCost - total_selling_cost;
+            const scenario2Profit = scenario2RenovationCost_v2 +  scenario2ARV_v2 +  scenarioProjectCost_v2;
             // const scenario2ROI = (scenario2Profit / (homePrice + scenario2TotalHoldingCost)) * 100;
             // const baseROI = afterRepairValue /  total_cash_needed_v2;
-            const scenario2ROI = scenario2ARV / total_cash_needed_v2;
+            // (baseProfit /  total_cash_needed_v2) * 100;
+            // const scenario2ROI = scenario2ARV / total_cash_needed_v2;
+            const scenario2ROI = (scenario2Profit /  total_cash_needed_v2) * 100;
             
 
             // Scenario 3: +20% Renovation Cost, -20% ARV, +4 Months
@@ -349,15 +359,21 @@
             const scenario3TotalHoldingCost = scenario3TotalMonthlyCost * scenario3HoldingPeriod;
             const scenario3SellingCost = (scenario3ARV * sellingCostPercent) / 100;
 
+            scenario2RenovationCost_v3 = renovationCost * 0.2;
+            scenario2ARV_v3  = afterRepairValue - (afterRepairValue * 0.2);
+            scenarioProjectCost_v3 = totalHoldingCost + (totalHoldingCost * 4);
+
             // const scenario3Profit = scenario3ARV - (homePrice + scenario3TotalHoldingCost + scenario3SellingCost);
             // const scenario2Profit = scenario2ARV - (homePrice + scenario2RenovationCost) - scenario2HoldingPeriod - purchaseClosingCost - total_selling_cost;
 
-            const scenario3Profit = scenario2ARV - (homePrice + scenario3RenovationCost) - scenario3HoldingPeriod -  purchaseClosingCost - total_selling_cost;
+            // const scenario3Profit = scenario2ARV - (homePrice + scenario3RenovationCost) - scenario3HoldingPeriod -  purchaseClosingCost - total_selling_cost;
 
+            const  scenario3Profit =  scenario2RenovationCost_v3 + scenario2ARV_v3 + scenarioProjectCost_v3;
             // const scenario2ROI = scenario2ARV / total_cash_needed_v2;
             // const scenario3ROI = (scenario3Profit / (homePrice + scenario3TotalHoldingCost)) * 100;
-            const scenario3ROI = scenario3ARV / total_cash_needed_v2;
-
+            // const scenario3ROI = scenario3ARV / total_cash_needed_v2;
+            // const scenario2ROI = (scenario2Profit /  total_cash_needed_v2) * 100;
+            const scenario3ROI = (scenario3Profit /  total_cash_needed_v2) * 100;
 
             // <p>Total Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             // <p>Total Holding Cost: $${scenario2TotalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>

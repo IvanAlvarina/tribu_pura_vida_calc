@@ -276,7 +276,7 @@
 
             const monthlyInterest_v2 = (total_loan_amount * (loanInterestRate / 100)) / 12;
 
-            const totalMonthlyCost = monthlyInterest_v2 + propertyTaxes + insurance + utilities ;
+            const totalMonthlyCost = monthlyInterest_v2 + propertyTaxes + insurance + utilities;
 
             const totalHoldingCost = totalMonthlyCost * holdingPeriod;
 
@@ -290,15 +290,9 @@
 
             const holding_period_months = totalMonthlyCost * totalMonthlyCost;
 
-           const total_loan_amount_v2 =(homePrice+renovationCost)*(1 - downPaymentPercentage);
+            const total_loan_amount_v2 =(homePrice+renovationCost)*(1 - downPaymentPercentage);
 
             const sumup = (homePrice + renovationCost) / downPaymentPercentage;
-
-            // total_cash_needed_v2 = downPayment + totalHoldingCost + purchaseClosingCost + total_selling_cost;
-
-            // const totalCashNeeded = loanIncludesRenovation
-            //     ? (downPayment + purchaseClosingCost + (propertyTaxes + insurance) * holdingPeriod)
-            //     : (homePrice + purchaseClosingCost + (propertyTaxes + insurance) * holdingPeriod);
 
             const baseSellingCost = (afterRepairValue * sellingCostPercent) / 100;
        
@@ -330,8 +324,6 @@
             const scenario2TotalHoldingCost = scenario2TotalMonthlyCost * scenario2HoldingPeriod;
             const scenario2SellingCost = (scenario2ARV * sellingCostPercent) / 100;
 
-
-
             scenario2RenovationCost_v2 = renovationCost * 0.1;
             scenario2ARV_v2  = afterRepairValue * 0.1;
             scenarioProjectCost_v2 = totalMonthlyCost * 2;
@@ -341,8 +333,6 @@
             const scenario2Profit_b = scenario1Profit - scenario2Profit_before;
             const scenario2Profit = scenario2Profit_b + scenario_arv_new;
             const scenario2ROI = (scenario2Profit / total_cash_needed_v2) * 100;
-
-            
             
 // ----------------------------------------------------------------------------------------------------------------------
             // Scenario 3: +20% Renovation Cost, -20% ARV, +4 Months
@@ -361,7 +351,6 @@
             const scenario3Profit_before = scenario2RenovationCost_v3 +  scenario2ARV_v3 +  scenarioProjectCost_v3;
             const scenario3Profit_b =  scenario1Profit - scenario3Profit_before;
             const scenario3Profit  =  scenario3Profit_b + scenario_arv_new_v3;
-            // const scenario3ROI = (scenario3Profit /  total_cash_needed_v2) * 100;
             const scenario3cashneeded = total_cash_needed_v2 + scenario2RenovationCost_v3 + scenarioProjectCost_v3;
             const scenario3ROI = (scenario3Profit /  scenario3cashneeded) * 100;
            

@@ -259,6 +259,8 @@
             const utilities = parseFloat(document.getElementById('utilities').value);
             const afterRepairValue = parseFloat(document.getElementById('after-repair-value').value);
             const sellingCostPercent = parseFloat(document.getElementById('selling-cost').value);
+            
+            var total_cash_needed_v2 =  0;
 
             if(loanIncludesRenovation_v2.value === 'yes') {
                     // When renovation is included, the loan amount is the sum of home price and renovation cost
@@ -266,48 +268,43 @@
                 } else {
                     // If renovation is not included, the loan amount is just the home price
                     total_loan_amount = homePrice - (homePrice * downPaymentPercentage);
+                    total_cash_needed_v2 += renovationCost;
             }
-            const monthlyInterest_v2 = (total_loan_amount * (loanInterestRate / 100)) / 12;
-
-            
-
             const loanAmount = loanIncludesRenovation ? (homePrice + renovationCost) : homePrice;
+
             const downPayment = loanAmount * downPaymentPercentage;
-            const monthlyInterest = (loanAmount * (loanInterestRate / 100)) / 12;
+
+            const monthlyInterest_v2 = (total_loan_amount * (loanInterestRate / 100)) / 12;
 
             const totalMonthlyCost = monthlyInterest_v2 + propertyTaxes + insurance + utilities ;
 
-            const holding_period_months = totalMonthlyCost * totalMonthlyCost;
-
             const totalHoldingCost = totalMonthlyCost * holdingPeriod;
+
             const purchaseClosingCost = loanIncludesRenovation ? (loanAmount * purchaseClosingCostPercentage) : (homePrice * purchaseClosingCostPercentage);
 
             const total_selling_cost = afterRepairValue * (sellingCostPercent / 100);
+            
+            total_cash_needed_v2 += downPayment + totalHoldingCost + purchaseClosingCost + total_selling_cost;
+
+            const monthlyInterest = (loanAmount * (loanInterestRate / 100)) / 12;
+
+            const holding_period_months = totalMonthlyCost * totalMonthlyCost;
 
            const total_loan_amount_v2 =(homePrice+renovationCost)*(1 - downPaymentPercentage);
-           
-
-        //    const total_cash_needed_v2 = total_loan_amount_v2 + purchaseClosingCost + holding_period_months + total_selling_cost;
 
             const sumup = (homePrice + renovationCost) / downPaymentPercentage;
 
-            // const total_cash_needed_v2 = sumup + purchaseClosingCost + totalHoldingCost + total_selling_cost;
-            const total_cash_needed_v2 = downPayment + totalHoldingCost + purchaseClosingCost + total_selling_cost;
+            // total_cash_needed_v2 = downPayment + totalHoldingCost + purchaseClosingCost + total_selling_cost;
 
-            const totalCashNeeded = loanIncludesRenovation
-                ? (downPayment + purchaseClosingCost + (propertyTaxes + insurance) * holdingPeriod)
-                : (homePrice + purchaseClosingCost + (propertyTaxes + insurance) * holdingPeriod);
+            // const totalCashNeeded = loanIncludesRenovation
+            //     ? (downPayment + purchaseClosingCost + (propertyTaxes + insurance) * holdingPeriod)
+            //     : (homePrice + purchaseClosingCost + (propertyTaxes + insurance) * holdingPeriod);
 
             const baseSellingCost = (afterRepairValue * sellingCostPercent) / 100;
-            // const baseProfit = afterRepairValue - (homePrice + totalHoldingCost + baseSellingCost);
-
+       
             const baseProfit = afterRepairValue - (homePrice + renovationCost) - totalHoldingCost - purchaseClosingCost - total_selling_cost;
-            // const baseROI = (baseProfit / (homePrice + totalHoldingCost)) * 100;
-            // const baseROI = afterRepairValue /  total_cash_needed_v2;
+           
             const baseROI = (baseProfit /  total_cash_needed_v2) * 100;
-
-            // <p>Monthly Loan Interest Only: $${monthlyInterest.toFixed(2)}</p>
-            // <p>Total Cash Needed: $${totalCashNeeded.toFixed(2)}</p>`;
 
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').innerHTML = `<h3>Base Results:</h3>
@@ -364,26 +361,10 @@
             const scenario3Profit_before = scenario2RenovationCost_v3 +  scenario2ARV_v3 +  scenarioProjectCost_v3;
             const scenario3Profit_b =  scenario1Profit - scenario3Profit_before;
             const scenario3Profit  =  scenario3Profit_b + scenario_arv_new_v3;
-            const scenario3ROI = (scenario3Profit /  total_cash_needed_v2) * 100;
-            // const scenario3Profit = scenario3ARV - (homePrice + scenario3TotalHoldingCost + scenario3SellingCost);
-            // const scenario2Profit = scenario2ARV - (homePrice + scenario2RenovationCost) - scenario2HoldingPeriod - purchaseClosingCost - total_selling_cost;
-
-            // const scenario3Profit = scenario2ARV - (homePrice + scenario3RenovationCost) - scenario3HoldingPeriod -  purchaseClosingCost - total_selling_cost;
-
+            // const scenario3ROI = (scenario3Profit /  total_cash_needed_v2) * 100;
+            const scenario3cashneeded = total_cash_needed_v2 + scenario2RenovationCost_v3 + scenarioProjectCost_v3;
+            const scenario3ROI = (scenario3Profit /  scenario3cashneeded) * 100;
            
-
-            // const scenario2ROI = scenario2ARV / total_cash_needed_v2;
-            // const scenario3ROI = (scenario3Profit / (homePrice + scenario3TotalHoldingCost)) * 100;
-            // const scenario3ROI = scenario3ARV / total_cash_needed_v2;
-            // const scenario2ROI = (scenario2Profit /  total_cash_needed_v2) * 100;
-            // total_cash_needed_v3_roi = total_cash_needed_v2 +  scenario2RenovationCost_v3 +  scenarioProjectCost_v3;
-            // const scenario2ROI = (scenario2Profit / total_cash_needed_v2_roi) * 100;
-            
-
-            // <p>Total Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            // <p>Total Holding Cost: $${scenario2TotalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            // <p>Total Holding Cost: $${scenario3TotalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-
             document.getElementById('scenarios').style.display = 'block';
             document.getElementById('scenarios').innerHTML = `<h3>Scenarios:</h3>
                 <p><strong>Scenario 1 (Base Scenario):</strong></p>
@@ -394,7 +375,7 @@
                 <p>Profit: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
 
-                <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):Renovation=10,000 + ARV=60,000 + Monthly Holding Cost=8,800 : Total:78,800</strong></p>
+                <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):</strong></p>
                 <p>Profit: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
         }

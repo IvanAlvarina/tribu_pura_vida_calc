@@ -175,7 +175,7 @@
                             <label id="label-selling-cost" for="selling-cost">Selling Cost (%):</label>
                             <input type="number" id="selling-cost" placeholder="E.g., 6" required>
                         </div>
-                        <button type="button" onclick="calculate()">Calculate</button>
+                        <button type="button" onclick="calculate()" id="calculate-button">Calculate</button>
                     </form>
                 </div>
 
@@ -185,8 +185,9 @@
             </div>
         </div>
         <div id="result" class="result" style="display: none;"></div>
-        <div id="scenarios" class="scenarios" style="display: none;"></div>
-        <p class="disclaimer">Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions.</p>
+        <div id="scenarios" class="scenarios" style="display: none;">
+        </div>
+        <p class="disclaimer" id="disclaimer">Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions.</p>
     </div>
 
     <div id="image-containers" style="display: flex; justify-content: center; align-items: center; width: 100%;">
@@ -199,7 +200,8 @@
     <script>
         let language = 'en';
 
-        function setLanguage(selectedLanguage) {
+        function setLanguage(selectedLanguage) 
+        {
             language = selectedLanguage;
             document.querySelector('.language-selection').style.display = 'none';
             document.getElementById('calculator-form').style.display = 'flex';
@@ -209,6 +211,8 @@
             // Show image when language is selected
             document.getElementById('image-container').style.display = 'block';
             document.getElementById('image-containers').style.display = 'none';
+
+            document.getElementById('scenarios').style.display = 'block';
 
 
             if (language === 'es') {
@@ -224,6 +228,8 @@
                 document.getElementById('label-utilities').innerText = 'Servicios Públicos Mensuales Estimados ($):';
                 document.getElementById('label-after-repair-value').innerText = 'Valor Después de Reparar (ARV) ($):';
                 document.getElementById('label-selling-cost').innerText = 'Costo de Venta (%):';
+                document.getElementById('calculate-button').innerText = 'Calcular';
+                document.getElementById('disclaimer').innerText = 'Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones. Realice un análisis adicional y la debida diligencia antes de tomar decisiones de inversión.';
             }
         }
 
@@ -353,20 +359,69 @@
             const scenario3Profit  =  scenario3Profit_b + scenario_arv_new_v3;
             const scenario3cashneeded = total_cash_needed_v2 + scenario2RenovationCost_v3 + scenarioProjectCost_v3;
             const scenario3ROI = (scenario3Profit /  scenario3cashneeded) * 100;
-           
-            document.getElementById('scenarios').style.display = 'block';
-            document.getElementById('scenarios').innerHTML = `<h3>Scenarios:</h3>
-                <p><strong>Scenario 1 (Base Scenario):</strong></p>
-                <p>Profit: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
 
-                <p><strong>Scenario 2 (Renovation +10%, ARV -10%, Holding +2 months):</strong></p>
-                <p>Profit: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+            if (language === 'es') {
+                document.getElementById('result').innerHTML = `<h3>Resultados Base:</h3>
+                    <p>Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Monto Total del Préstamo: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Interés Mensual del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Costo Total Mensual de Retención: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Costo Total de Retención del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Costo Total de Venta: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Efectivo Total Necesario: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
 
-                <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):</strong></p>
-                <p>Profit: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
+                document.getElementById('scenarios').innerHTML = `<h3>Escenarios:</h3>
+                    <p><strong>Escenario 1 (Escenario Base):</strong></p>
+                    <p>Ganancia: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
+                    <p><strong>Escenario 2 (Renovación +10%, ARV -10%, Retención +2 meses):</strong></p>
+                    <p>Ganancia: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
+                    <p><strong>Escenario 3 (Renovación +20%, ARV -20%, Retención +4 meses):</strong></p>
+                    <p>Ganancia: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
+            } else {
+                // Original English display code remains the same
+                document.getElementById('result').innerHTML = `<h3>Base Results:</h3>
+                    <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Monthly Loan Interest Only: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Selling Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
+
+                document.getElementById('scenarios').innerHTML = `<h3>Scenarios:</h3>
+                    <p><strong>Scenario 1 (Base Scenario):</strong></p>
+                    <p>Profit: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
+                    <p><strong>Scenario 2 (Renovation +10%, ARV -10%, Holding +2 months):</strong></p>
+                    <p>Profit: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
+                    <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):</strong></p>
+                    <p>Profit: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
+            }
+
+            // document.getElementById('scenarios').style.display = 'block';
+            // document.getElementById('scenarios').innerHTML = `<h3>Scenarios:</h3>
+            //     <p><strong>Scenario 1 (Base Scenario):</strong></p>
+            //     <p>Profit: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
+            //     <p><strong>Scenario 2 (Renovation +10%, ARV -10%, Holding +2 months):</strong></p>
+            //     <p>Profit: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
+            //     <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):</strong></p>
+            //     <p>Profit: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
         }
     </script>
 </body>

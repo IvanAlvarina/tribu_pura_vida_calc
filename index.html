@@ -10,7 +10,10 @@
         @import url('https://www.fontspace.com/aaargh-font-f11328');
         @import url('https://www.fontspace.com/amccd-font-f25168');
 
-      
+        .group:hover .tooltip {
+        opacity: 1 !important;
+        visibility: visible !important;
+        }
     </style>
       <script src="https://cdn.tailwindcss.com"></script>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,20 +33,33 @@
             
             <div class="lg:flex lg:space-x-6">
                 <!-- Calculator Form -->
-                <div class="lg:w-1/2 bg-gray-50 p-6 rounded-lg shadow-md mb-6 lg:mb-0 flex-none h-[600px] overflow-y-auto">
+                <div class="lg:w-1/2 bg-gray-50 p-6 rounded-lg shadow-md mb-6 lg:mb-0 flex-none h-[600px]">
                     <form id="calculator-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label id="label-home-price" class="block text-gray-700 mb-1 text-sm" for="home-price">
                                 Home Price
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        How much you're offering to buy the house
+                                    </span>
+                                </span>
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
                                 <input type="number" id="home-price" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 150000" required>
                             </div>
-                        </div>                        
+                        </div>                    
                         
                         <div>
-                            <label class="block text-gray-700 mb-1 text-sm" id="label-down-payment-percentage" for="down-payment-percentage">Down Payment Percentage</label>
+                            <label class="block text-gray-700 mb-1 text-sm" id="label-down-payment-percentage" for="down-payment-percentage">Down Payment Percentage
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        The percentage of the downpayment on your loan.
+                                    </span>
+                                </span>
+                            </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
                                 <input type="number" id="down-payment-percentage" class="w-full outline-none" placeholder="E.g., 20" required>
                                 <span class="ml-2 text-gray-500">% </span>
@@ -57,19 +73,36 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-1 text-sm" id="label-loan-interest" for="loan-interest">Interest Rate</label>
+                            <label class="block text-gray-700 mb-1 text-sm" id="label-loan-interest" for="loan-interest">Interest Rate
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        The interest rate of your loan.
+                                    </span>
+                                </span>
+                            </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
                                 <input type="number" id="loan-interest" class="w-full outline-none" placeholder="E.g., 5" step="0.01" required>
                                 <span class="ml-2 text-gray-500">% </span>
                             </div>
                         </div>
                         <div>
-                            <label id="label-holding-period" class="block text-gray-700 mb-1 text-sm" for="holding-period">Holding Period (Months)</label>
+                            <label id="label-holding-period" class="block text-gray-700 mb-1 text-sm" for="holding-period">Holding Period (Months)
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        The total months from purchase through renovation to sale.
+                                    </span>
+                            </label>
                             <input type="number" id="holding-period" class="w-full p-2 border border-gray-300 rounded" placeholder="E.g., 6" required>
                         </div>
                         <div>
-                            <label id="label-renovation-cost" class="block text-gray-700 mb-1 text-sm" for="renovation-cost">
-                                Renovation Cost
+                            <label id="label-renovation-cost" class="block text-gray-700 mb-1 text-sm" for="renovation-cost">Renovation Cost
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        The total cost of your renovations.
+                                    </span>
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
@@ -77,15 +110,25 @@
                             </div>
                         </div>                        
                         <div class="pt-1">
-                            <label class="block text-gray-700 mb-1 text-xs" id="label-purchase-closing-cost" for="purchase-closing-cost">Purchase Closing Cost Percentage</label>
+                            <label class="block text-gray-700 mb-1 text-xs" id="label-purchase-closing-cost" for="purchase-closing-cost">Purchase Closing Cost Percentage
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        Fees related to the purchase closing, as a percentage of the home price
+                                    </span>
+                            </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
                                 <input type="number" id="purchase-closing-cost" class="w-full outline-none" placeholder="E.g., 3" step="0.01" required>
                                 <span class="ml-2 text-gray-700">%</span>
                             </div>
                         </div>  
                         <div>
-                            <label id="label-property-taxes" class="block text-gray-700 mb-1 text-sm" for="property-taxes">
-                                Yearly Property Taxes
+                            <label id="label-property-taxes" class="block text-gray-700 mb-1 text-sm" for="property-taxes">Yearly Property Taxes
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        Annual property taxes.
+                                    </span>
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
@@ -93,8 +136,12 @@
                             </div>
                         </div>                        
                         <div>
-                            <label id="label-insurance" class="block text-gray-700 mb-1 text-sm" for="insurance">
-                                Yearly Insurance
+                            <label id="label-insurance" class="block text-gray-700 mb-1 text-sm" for="insurance">Yearly Insurance
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        The annual premium for home insurance.
+                                    </span>
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
@@ -102,8 +149,12 @@
                             </div>
                         </div>
                         <div class="pt-1">
-                            <label id="label-utilities" class="block text-gray-700 mb-1 text-xs" for="utilities">
-                                Estimated Monthly Utilities
+                            <label id="label-utilities" class="block text-gray-700 mb-1 text-xs" for="utilities">Estimated Monthly Utilities
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        An estimate of your monthly gas, electricity, water, and sewer costs.
+                                    </span>
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
@@ -111,8 +162,12 @@
                             </div>
                         </div>
                         <div>
-                            <label id="label-after-repair-value" class="block text-gray-700 mb-1 text-sm" for="after-repair-value">
-                                After Repair Value (ARV)
+                            <label id="label-after-repair-value" class="block text-gray-700 mb-1 text-sm" for="after-repair-value">After Repair Value (ARV)
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        The estimated sale price of the house after renovations.
+                                    </span>
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
@@ -121,7 +176,13 @@
                         </div>
 
                         <div >
-                            <label class="block text-gray-700 mb-1 text-sm" id="label-selling-cost" for="selling-cost">Selling Cost</label>
+                            <label class="block text-gray-700 mb-1 text-sm" id="label-selling-cost" for="selling-cost">Selling Cost
+                                <span class="relative inline-block cursor-help group">
+                                    <span class="text-blue-600 cursor-pointer">ℹ️</span>
+                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                        Fees for closing the sale, calculated as a percentage of the sale price.
+                                    </span>
+                            </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
                                 <input type="number" id="selling-cost" class="w-full outline-none" placeholder="E.g., 6" step="0.01" required>
                                 <span class="ml-2 text-gray-700">%</span>

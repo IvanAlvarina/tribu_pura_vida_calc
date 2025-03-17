@@ -10,229 +10,203 @@
         @import url('https://www.fontspace.com/aaargh-font-f11328');
         @import url('https://www.fontspace.com/amccd-font-f25168');
 
-        body {
-            font-family: 'Aaargh Normal', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FFFFFF;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #FFF;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            font-family: 'A BIG DEAL', sans-serif;
-            color: #10ABFF;
-        }
-        .language-selection {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .language-button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #88D593;
-            color: white;
-        }
-        .language-button:hover {
-            background-color: #6BAA73;
-        }
-        form {
-            display: none;
-            flex-direction: column;
-            gap: 15px;
-        }
-        label {
-            font-family: 'Agoestoesan Normal', sans-serif;
-            font-weight: bold;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 15px;
-            font-size: 18px;
-            font-family: 'AMCCD', sans-serif;
-            background-color: #FFFF26;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #F0E926;
-        }
-        .result, .scenarios {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #F9F9F9;
-            border-left: 5px solid #084B6F;
-            border-radius: 5px;
-        }
-        .disclaimer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #888;
-            text-align: center;
-        }
-
-        .form-container {
-            display: none; /* Initially hidden */
-            flex-direction: row; /* Form and image side by side */
-            align-items: flex-start; /* Align items at the top */
-            gap: 20px; /* Space between form and image */
-        }
-
-        .form-content {
-            flex: 1; /* Form takes up available space */
-        }
-
-        #image-container {
-            display: none; /* Initially hidden */
-            flex-shrink: 0; /* Prevents image from shrinking */
-            width: 200px; /* Set width */
-        }
-
-        #image-container img {
-            width: 100%;
-            height: auto;
-        }
+      
     </style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
-<body>
-    <div class="container">
-        <h1 class="header">Jose Bernard Investor Fix & Flip Calculator</h1>
-        <div class="language-selection">
-            <p>Select your language / Seleccione su idioma:</p>
-            <button class="language-button" onclick="setLanguage('en')">English</button>
-            <button class="language-button" onclick="setLanguage('es')">Español</button>
-        </div>
-        <div class="form-wrapper">
-            <div class="form-container">
-                <div class="form-content">
-                    <form id="calculator-form">
+<body class="bg-gray-100 font-[Poppins]">
+    <div class="max-w-7xl mx-auto p-4 md:p-6">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <div class="flex justify-center mt-3">
+                <img src="tribu_logo.jpg" alt="Tribu Logo" class="w-64 h-auto">
+            </div>
+            <h1 id="calculator-title" class="text-2xl font-bold text-center mb-4">Jose Bernard Investor Fix & Flip Calculator</h1>
+            
+            <div class="text-center mb-6">
+                <button id="language-toggle" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-200" onclick="toggleLanguage()">Español</button>
+            </div>
+            
+            <div class="lg:flex lg:space-x-6">
+                <!-- Calculator Form -->
+                <div class="lg:w-1/2 bg-gray-50 p-6 rounded-lg shadow-md mb-6 lg:mb-0 flex-none h-[600px] overflow-y-auto">
+                    <form id="calculator-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label id="label-home-price" for="home-price">Home Price ($):</label>
-                            <input type="number" id="home-price" placeholder="E.g., 150000" required>
+                            <label id="label-home-price" class="block text-gray-700 mb-1 text-sm" for="home-price">
+                                Home Price
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
+                                <input type="number" id="home-price" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 150000" required>
+                            </div>
+                        </div>                        
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-1 text-sm" id="label-down-payment-percentage" for="down-payment-percentage">Down Payment Percentage</label>
+                            <div class="flex items-center border border-gray-300 rounded p-2">
+                                <input type="number" id="down-payment-percentage" class="w-full outline-none" placeholder="E.g., 20" required>
+                                <span class="ml-2 text-gray-500">% </span>
+                            </div>
                         </div>
-                        <div>
-                            <label id="label-down-payment-percentage" for="down-payment-percentage">Down Payment Percentage (%):</label>
-                            <input type="number" id="down-payment-percentage" placeholder="E.g., 20" required>
-                        </div>
-                        <div>
-                            <label id="label-loan-includes-renovation" for="loan-includes-renovation">Does the Loan Include Renovation Costs?:</label>
-                            <select id="loan-includes-renovation" required>
+                        <div class="pt-1"> 
+                            <label id="label-loan-includes-renovation" class="block text-gray-700 mb-1 text-xs" for="loan-includes-renovation">Does the Loan Include Renovation Costs?</label>
+                            <select id="loan-includes-renovation" class="w-full p-2 border border-gray-300 rounded" required>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
                         </div>
                         <div>
-                            <label id="label-loan-interest" for="loan-interest">Interest Rate (%):</label>
-                            <input type="number" id="loan-interest" placeholder="E.g., 5" required>
+                            <label class="block text-gray-700 mb-1 text-sm" id="label-loan-interest" for="loan-interest">Interest Rate</label>
+                            <div class="flex items-center border border-gray-300 rounded p-2">
+                                <input type="number" id="loan-interest" class="w-full outline-none" placeholder="E.g., 5" step="0.01" required>
+                                <span class="ml-2 text-gray-500">% </span>
+                            </div>
                         </div>
                         <div>
-                            <label id="label-holding-period" for="holding-period">Holding Period (Months):</label>
-                            <input type="number" id="holding-period" placeholder="E.g., 6" required>
+                            <label id="label-holding-period" class="block text-gray-700 mb-1 text-sm" for="holding-period">Holding Period (Months)</label>
+                            <input type="number" id="holding-period" class="w-full p-2 border border-gray-300 rounded" placeholder="E.g., 6" required>
                         </div>
                         <div>
-                            <label id="label-renovation-cost" for="renovation-cost">Renovation Cost ($):</label>
-                            <input type="number" id="renovation-cost" placeholder="E.g., 50000" required>
+                            <label id="label-renovation-cost" class="block text-gray-700 mb-1 text-sm" for="renovation-cost">
+                                Renovation Cost
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
+                                <input type="number" id="renovation-cost" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 50000" required>
+                            </div>
+                        </div>                        
+                        <div class="pt-1">
+                            <label class="block text-gray-700 mb-1 text-xs" id="label-purchase-closing-cost" for="purchase-closing-cost">Purchase Closing Cost Percentage</label>
+                            <div class="flex items-center border border-gray-300 rounded p-2">
+                                <input type="number" id="purchase-closing-cost" class="w-full outline-none" placeholder="E.g., 3" step="0.01" required>
+                                <span class="ml-2 text-gray-700">%</span>
+                            </div>
+                        </div>  
+                        <div>
+                            <label id="label-property-taxes" class="block text-gray-700 mb-1 text-sm" for="property-taxes">
+                                Yearly Property Taxes
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
+                                <input type="number" id="property-taxes" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 3000" required>
+                            </div>
+                        </div>                        
+                        <div>
+                            <label id="label-insurance" class="block text-gray-700 mb-1 text-sm" for="insurance">
+                                Yearly Insurance
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
+                                <input type="number" id="insurance" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 1200" required>
+                            </div>
+                        </div>
+                        <div class="pt-1">
+                            <label id="label-utilities" class="block text-gray-700 mb-1 text-xs" for="utilities">
+                                Estimated Monthly Utilities
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
+                                <input type="number" id="utilities" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 200" required>
+                            </div>
                         </div>
                         <div>
-                            <label id="label-purchase-closing-cost" for="purchase-closing-cost">Purchase Closing Cost Percentage (%):</label>
-                            <input type="number" id="purchase-closing-cost" placeholder="E.g., 3" required>
+                            <label id="label-after-repair-value" class="block text-gray-700 mb-1 text-sm" for="after-repair-value">
+                                After Repair Value (ARV)
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
+                                <input type="number" id="after-repair-value" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 250000" required>
+                            </div>
                         </div>
-                        <div>
-                            <label id="label-property-taxes" for="property-taxes">Yearly Property Taxes ($):</label>
-                            <input type="number" id="property-taxes" placeholder="E.g., 3000" required>
-                        </div>
-                        <div>
-                            <label id="label-insurance" for="insurance">Yearly Insurance ($):</label>
-                            <input type="number" id="insurance" placeholder="E.g., 1200" required>
-                        </div>
-                        <div>
-                            <label id="label-utilities" for="utilities">Estimated Monthly Utilities ($):</label>
-                            <input type="number" id="utilities" placeholder="E.g., 200" required>
-                        </div>
-                        <div>
-                            <label id="label-after-repair-value" for="after-repair-value">After Repair Value (ARV) ($):</label>
-                            <input type="number" id="after-repair-value" placeholder="E.g., 250000" required>
-                        </div>
-                        <div>
-                            <label id="label-selling-cost" for="selling-cost">Selling Cost (%):</label>
-                            <input type="number" id="selling-cost" placeholder="E.g., 6" required>
-                        </div>
-                        <button type="button" onclick="calculate()" id="calculate-button">Calculate</button>
-                    </form>
-                </div>
 
-                <div id="image-container">
-                    <img src="tribu_logo.jpg" alt="Logo" style="width:100%; height:auto;">
+                        <div >
+                            <label class="block text-gray-700 mb-1 text-sm" id="label-selling-cost" for="selling-cost">Selling Cost</label>
+                            <div class="flex items-center border border-gray-300 rounded p-2">
+                                <input type="number" id="selling-cost" class="w-full outline-none" placeholder="E.g., 6" step="0.01" required>
+                                <span class="ml-2 text-gray-700">%</span>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <button id="calculate-button" type="button" onclick="calculate()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded font-medium mt-6 transition duration-200">Calculate</button>
+                </div>
+                
+                <!-- Results Section -->
+                <div id="results-container" class="lg:w-1/2 bg-gray-50 p-6 rounded-lg shadow-md hidden flex-grow">
+                    <div id="result" class="mb-6">
+                       
+                    </div>
+                    
+                    <div id="scenarios">
+                        
+                    </div>
                 </div>
             </div>
+            
+            <p id="disclaimer" class="text-xs text-center text-gray-500 mt-6">
+                Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions.
+            </p>
         </div>
-        <div id="result" class="result" style="display: none;"></div>
-        <div id="scenarios" class="scenarios" style="display: none;">
-        </div>
-        <p class="disclaimer" id="disclaimer">Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions.</p>
-    </div>
-
-    <div id="image-containers" style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <img src="tribu_logo.jpg" alt="Logo" style="width:30%; height:auto;">
     </div>
     
-
-    
-
     <script>
-        let language = 'en';
+         document.querySelectorAll("input[type='number']").forEach(input => {
+            input.addEventListener("blur", function () {
+                if (this.value && !this.value.includes(".")) {
+                    this.value = parseFloat(this.value).toFixed(2);
+                }
+            });
+        });
+       let language = 'en';
 
-        function setLanguage(selectedLanguage) 
-        {
-            language = selectedLanguage;
-            document.querySelector('.language-selection').style.display = 'none';
-            document.getElementById('calculator-form').style.display = 'flex';
+        document.getElementById("language-toggle").addEventListener("click", function() {
+            language = language === 'en' ? 'es' : 'en';
+            updateLanguage();
+        });
 
-            document.querySelector('.form-container').style.display = 'flex';
+        function updateLanguage() {
+            document.getElementById("language-toggle").innerText = language === 'en' ? "Español" : "English";
 
-            // Show image when language is selected
-            document.getElementById('image-container').style.display = 'block';
-            document.getElementById('image-containers').style.display = 'none';
+            const translations = {
+                en: {
+                    "label-home-price": "Home Price",
+                    "label-down-payment-percentage": "Down Payment Percentage",
+                    "label-loan-includes-renovation": "Does the Loan Include Renovation Costs?",
+                    "label-loan-interest": "Interest Rate",
+                    "label-holding-period": "Holding Period (Months)",
+                    "label-renovation-cost": "Renovation Cost:",
+                    "label-purchase-closing-cost": "Purchase Closing Cost Percentage",
+                    "label-property-taxes": "Yearly Property Taxes",
+                    "label-insurance": "Yearly Insurance",
+                    "label-utilities": "Estimated Monthly Utilities",
+                    "label-after-repair-value": "After Repair Value (ARV)",
+                    "label-selling-cost": "Selling Cost",
+                    "calculate-button": "Calculate",
+                    "disclaimer": "Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions."
+                },
+                es: {
+                    "label-home-price": "Precio de la Casa",
+                    "label-down-payment-percentage": "Porcentaje de Pago Inicial",
+                    "label-loan-includes-renovation": "¿El préstamo incluye costos de renovación?",
+                    "label-loan-interest": "Tasa de Interés",
+                    "label-holding-period": "Período de Retención (Meses)",
+                    "label-renovation-cost": "Costo de Renovación",
+                    "label-purchase-closing-cost": "Porcentaje de Costos de Cierre de Compra",
+                    "label-property-taxes": "Impuestos Anuales de Propiedad",
+                    "label-insurance": "Seguro Anual",
+                    "label-utilities": "Servicios Públicos Mensuales Estimados",
+                    "label-after-repair-value": "Valor Después de Reparar (ARV)",
+                    "label-selling-cost": "Costo de Venta",
+                    "calculate-button": "Calcular",
+                    "disclaimer": "Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones."
+                }
+            };
 
-            document.getElementById('scenarios').style.display = 'block';
-
-
-            if (language === 'es') {
-                document.getElementById('label-home-price').innerText = 'Precio de la Casa ($):';
-                document.getElementById('label-down-payment-percentage').innerText = 'Porcentaje de Pago Inicial (%):';
-                document.getElementById('label-loan-includes-renovation').innerText = '¿El préstamo incluye costos de renovación?';
-                document.getElementById('label-loan-interest').innerText = 'Tasa de Interés (%):';
-                document.getElementById('label-holding-period').innerText = 'Período de Retención (Meses):';
-                document.getElementById('label-renovation-cost').innerText = 'Costo de Renovación ($):';
-                document.getElementById('label-purchase-closing-cost').innerText = 'Porcentaje de Costos de Cierre de Compra (%):';
-                document.getElementById('label-property-taxes').innerText = 'Impuestos Anuales de Propiedad ($):';
-                document.getElementById('label-insurance').innerText = 'Seguro Anual ($):';
-                document.getElementById('label-utilities').innerText = 'Servicios Públicos Mensuales Estimados ($):';
-                document.getElementById('label-after-repair-value').innerText = 'Valor Después de Reparar (ARV) ($):';
-                document.getElementById('label-selling-cost').innerText = 'Costo de Venta (%):';
-                document.getElementById('calculate-button').innerText = 'Calcular';
-                document.getElementById('disclaimer').innerText = 'Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones. Realice un análisis adicional y la debida diligencia antes de tomar decisiones de inversión.';
-            }
+            Object.keys(translations[language]).forEach(id => {
+                document.getElementById(id).innerText = translations[language][id];
+            });
         }
-
         function calculate() {
 
             // Check if any required field is empty
@@ -261,7 +235,13 @@
             const holdingPeriod = parseFloat(document.getElementById('holding-period').value);
             const purchaseClosingCostPercentage = parseFloat(document.getElementById('purchase-closing-cost').value) / 100;
             const propertyTaxes = parseFloat(document.getElementById('property-taxes').value) / 12;
+
+            const showPropertyTaxes = parseFloat(document.getElementById('property-taxes').value);
+
             const insurance = parseFloat(document.getElementById('insurance').value) / 12;
+
+            const showInsurance = parseFloat(document.getElementById('insurance').value);
+
             const utilities = parseFloat(document.getElementById('utilities').value);
             const afterRepairValue = parseFloat(document.getElementById('after-repair-value').value);
             const sellingCostPercent = parseFloat(document.getElementById('selling-cost').value);
@@ -306,11 +286,13 @@
            
             const baseROI = (baseProfit /  total_cash_needed_v2) * 100;
 
+            document.getElementById('results-container').style.display = 'block';
             document.getElementById('result').style.display = 'block';
-            document.getElementById('result').innerHTML = `<h3>Base Results:</h3>
+            
+            document.getElementById('result').innerHTML = `<h3>Deal Financial Summary:</h3>
                 <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Monthly Loan Interest Only: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -361,67 +343,187 @@
             const scenario3ROI = (scenario3Profit /  scenario3cashneeded) * 100;
 
             if (language === 'es') {
-                document.getElementById('result').innerHTML = `<h3>Resultados Base:</h3>
+                // Mostrar el Resumen Financiero del Acuerdo
+                document.getElementById('result').innerHTML = `
+                    <h3><strong>Resumen Financiero del Acuerdo</strong></h3><br>
+
+                    <h2><strong>Resumen del Préstamo</strong></h2>
                     <p>Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Monto Total del Préstamo: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Interés Mensual del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Pago Mensual de Intereses del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
+                    <h2><strong>Resumen de Costos de Retención</strong></h2>
+                        * Pago Mensual del Impuesto a la Propiedad ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                        * Pago Mensual del Seguro ($${insurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                        * Servicios Públicos Mensuales ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
+                    <hr>
                     <p>Costo Total Mensual de Retención: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Costo Total de Retención del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
+                    <h2><strong>Resumen de Costos de Cierre</strong></h2>
+                    <p>Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Costo Total de Cierre de Venta: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
+                    <h2><strong>Resumen de Efectivo Necesario</strong></h2>
+                    <p>Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Costo Total de Retención del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Costo Total de Venta: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Efectivo Total Necesario: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
+                    <p>Efectivo Total Necesario: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                `;
 
-                document.getElementById('scenarios').innerHTML = `<h3>Escenarios:</h3>
-                    <p><strong>Escenario 1 (Escenario Base):</strong></p>
-                    <p>Ganancia: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                document.getElementById('results-container').style.display = 'block';
+                document.getElementById('scenarios').style.display = 'block';
 
-                    <p><strong>Escenario 2 (Renovación +10%, ARV -10%, Retención +2 meses):</strong></p>
-                    <p>Ganancia: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                document.getElementById('scenarios').innerHTML = `
+                    <h3 class="text-2xl font-bold mb-4">Resultados de Ganancia y Retorno de Inversión</h3>
 
-                    <p><strong>Escenario 3 (Renovación +20%, ARV -20%, Retención +4 meses):</strong></p>
-                    <p>Ganancia: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
+                    <!-- Escenario 1 -->
+                    <div class="flex justify-center items-center gap-8 mb-8">
+                        <div class="flex flex-col items-center justify-center w-32 h-32 bg-blue-100 text-blue-700 font-bold rounded-full shadow-md">
+                            <p>Ganancia</p>
+                            <p>$${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center w-32 h-32 bg-green-100 text-green-700 font-bold rounded-full shadow-md">
+                            <p>ROI</p>
+                            <p>${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mt-6 mb-4">Resultados de Escenarios Potenciales en el Peor Caso</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Escenario 2 -->
+                        <div class="p-4 border border-gray-300 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Escenario Potencial en el Peor Caso I</h4>
+                            <p class="text-gray-700 text-sm mb-4">
+                                ¿Qué pasa si la renovación aumenta un 10%, tienes que descontar el precio de venta un 10% 
+                                y terminas reteniendo la propiedad por 2 meses adicionales?
+                            </p>
+                            <div class="flex justify-center gap-6">
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-red-100 text-red-700 font-bold rounded-full shadow-md">
+                                    <p>Ganancia</p>
+                                    <p>$${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                </div>
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-yellow-100 text-yellow-700 font-bold rounded-full shadow-md">
+                                    <p>ROI</p>
+                                    <p>${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Escenario 3 -->
+                        <div class="p-4 border border-gray-300 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Escenario Potencial en el Peor Caso II</h4>
+                            <p class="text-gray-700 text-sm mb-4">
+                                ¿Qué pasa si la renovación aumenta un 20%, tienes que descontar el precio de venta un 20% 
+                                y terminas reteniendo la propiedad por 4 meses adicionales?
+                            </p>
+                            <div class="flex justify-center gap-6">
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-red-100 text-red-700 font-bold rounded-full shadow-md">
+                                    <p>Ganancia</p>
+                                    <p>$${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                </div>
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-yellow-100 text-yellow-700 font-bold rounded-full shadow-md">
+                                    <p>ROI</p>
+                                    <p>${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
             } else {
                 // Original English display code remains the same
-                document.getElementById('result').innerHTML = `<h3>Base Results:</h3>
+                document.getElementById('result').innerHTML = `
+                    <h3><strong>Deal Financial Summary</strong></h3><br>
+                    
+                    <h2><strong>Loan Summary</strong></h2>
                     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Monthly Loan Interest Only: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
+                    <h2><strong>Holding Cost Summary</strong></h2>
+                        * Monthly Property Tax Payment ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                        * Monthly Insurance Payment ($${insurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                        * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
+                    <hr>
                     <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
+                     <h2><strong>Closing Cost Summary</strong></h2>
+                    <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Selling Closing Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
+                    <h2><strong>Cash Needed Summary</strong></h2>
+                    <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Selling Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
+                    <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                `;
 
-                document.getElementById('scenarios').innerHTML = `<h3>Scenarios:</h3>
-                    <p><strong>Scenario 1 (Base Scenario):</strong></p>
-                    <p>Profit: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
 
-                    <p><strong>Scenario 2 (Renovation +10%, ARV -10%, Holding +2 months):</strong></p>
-                    <p>Profit: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                document.getElementById('results-container').style.display = 'block';
+                document.getElementById('scenarios').style.display = 'block';
 
-                    <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):</strong></p>
-                    <p>Profit: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
+                document.getElementById('scenarios').innerHTML = `
+                    <h3 class="text-2xl font-bold mb-4">Profit and Return on Investment Results</h3>
+
+                    <!-- Scenario 1 -->
+                    <div class="flex justify-center items-center gap-8 mb-8">
+                        <div class="flex flex-col items-center justify-center w-32 h-32 bg-blue-100 text-blue-700 font-bold rounded-full shadow-md">
+                            <p>Profit</p>
+                            <p>$${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center w-32 h-32 bg-green-100 text-green-700 font-bold rounded-full shadow-md">
+                            <p>ROI</p>
+                            <p>${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mt-6 mb-4">Potential Worst-Case Scenarios Results</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Scenario 2 -->
+                        <div class="p-4 border border-gray-300 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Potential Worst-Case Scenario I</h4>
+                            <p class="text-gray-700 text-sm mb-4">
+                                What if your renovation goes over by 10%, you have to discount your sales price by 10%, 
+                                and you end up holding the property for 2 additional months?
+                            </p>
+                            <div class="flex justify-center gap-6">
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-red-100 text-red-700 font-bold rounded-full shadow-md">
+                                    <p>Profit</p>
+                                    <p>$${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                </div>
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-yellow-100 text-yellow-700 font-bold rounded-full shadow-md">
+                                    <p>ROI</p>
+                                    <p>${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scenario 3 -->
+                        <div class="p-4 border border-gray-300 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Potential Worst-Case Scenario II</h4>
+                            <p class="text-gray-700 text-sm mb-4">
+                                What if your renovation goes over by 20%, you have to discount your sales price by 20%, 
+                                and you end up holding the property for 4 additional months?
+                            </p>
+                            <div class="flex justify-center gap-6">
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-red-100 text-red-700 font-bold rounded-full shadow-md">
+                                    <p>Profit</p>
+                                    <p>$${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                </div>
+                                <div class="flex flex-col items-center justify-center w-24 h-24 bg-yellow-100 text-yellow-700 font-bold rounded-full shadow-md">
+                                    <p>ROI</p>
+                                    <p>${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
             }
-
-            // document.getElementById('scenarios').style.display = 'block';
-            // document.getElementById('scenarios').innerHTML = `<h3>Scenarios:</h3>
-            //     <p><strong>Scenario 1 (Base Scenario):</strong></p>
-            //     <p>Profit: $${scenario1Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>ROI: ${scenario1ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
-
-            //     <p><strong>Scenario 2 (Renovation +10%, ARV -10%, Holding +2 months):</strong></p>
-            //     <p>Profit: $${scenario2Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>ROI: ${scenario2ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
-
-            //     <p><strong>Scenario 3 (Renovation +20%, ARV -20%, Holding +4 months):</strong></p>
-            //     <p>Profit: $${scenario3Profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>ROI: ${scenario3ROI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>`;
         }
     </script>
 </body>

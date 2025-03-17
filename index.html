@@ -40,7 +40,7 @@
                                 Home Price
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-home-price" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         How much you're offering to buy the house
                                     </span>
                                 </span>
@@ -52,10 +52,10 @@
                         </div>                    
                         
                         <div>
-                            <label class="block text-gray-700 mb-1 text-sm" id="label-down-payment-percentage" for="down-payment-percentage">Down Payment Percentage
+                            <label id="label-down-payment-percentage" class="block text-gray-700 mb-1 text-sm"  for="down-payment-percentage">Down Payment Percentage
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-down-payment" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         The percentage of the downpayment on your loan.
                                     </span>
                                 </span>
@@ -73,10 +73,10 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-1 text-sm" id="label-loan-interest" for="loan-interest">Interest Rate
+                            <label id="label-loan-interest" class="block text-gray-700 mb-1 text-sm" for="loan-interest">Interest Rate
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-interest-rate" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         The interest rate of your loan.
                                     </span>
                                 </span>
@@ -90,7 +90,7 @@
                             <label id="label-holding-period" class="block text-gray-700 mb-1 text-sm" for="holding-period">Holding Period (Months)
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-holding-period" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         The total months from purchase through renovation to sale.
                                     </span>
                             </label>
@@ -100,7 +100,7 @@
                             <label id="label-renovation-cost" class="block text-gray-700 mb-1 text-sm" for="renovation-cost">Renovation Cost
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-renovation-cost" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         The total cost of your renovations.
                                     </span>
                             </label>
@@ -110,10 +110,10 @@
                             </div>
                         </div>                        
                         <div class="pt-1">
-                            <label class="block text-gray-700 mb-1 text-xs" id="label-purchase-closing-cost" for="purchase-closing-cost">Purchase Closing Cost Percentage
+                            <label class="block text-gray-700 mb-1 text-[11.5px]" id="label-purchase-closing-cost" for="purchase-closing-cost">Purchase Closing Cost Percentage
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-purchase-closing" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         Fees related to the purchase closing, as a percentage of the home price
                                     </span>
                             </label>
@@ -126,7 +126,7 @@
                             <label id="label-property-taxes" class="block text-gray-700 mb-1 text-sm" for="property-taxes">Yearly Property Taxes
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-property-taxes" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         Annual property taxes.
                                     </span>
                             </label>
@@ -139,7 +139,7 @@
                             <label id="label-insurance" class="block text-gray-700 mb-1 text-sm" for="insurance">Yearly Insurance
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-insurance" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         The annual premium for home insurance.
                                     </span>
                             </label>
@@ -152,7 +152,7 @@
                             <label id="label-utilities" class="block text-gray-700 mb-1 text-xs" for="utilities">Estimated Monthly Utilities
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-utilities" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         An estimate of your monthly gas, electricity, water, and sewer costs.
                                     </span>
                             </label>
@@ -165,7 +165,7 @@
                             <label id="label-after-repair-value" class="block text-gray-700 mb-1 text-sm" for="after-repair-value">After Repair Value (ARV)
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-arv" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         The estimated sale price of the house after renovations.
                                     </span>
                             </label>
@@ -179,7 +179,7 @@
                             <label class="block text-gray-700 mb-1 text-sm" id="label-selling-cost" for="selling-cost">Selling Cost
                                 <span class="relative inline-block cursor-help group">
                                     <span class="text-blue-600 cursor-pointer">ℹ️</span>
-                                    <span class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                                    <span id="tooltip-selling-cost" class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
                                         Fees for closing the sale, calculated as a percentage of the sale price.
                                     </span>
                             </label>
@@ -236,7 +236,7 @@
                     "label-loan-includes-renovation": "Does the Loan Include Renovation Costs?",
                     "label-loan-interest": "Interest Rate",
                     "label-holding-period": "Holding Period (Months)",
-                    "label-renovation-cost": "Renovation Cost:",
+                    "label-renovation-cost": "Renovation Cost",
                     "label-purchase-closing-cost": "Purchase Closing Cost Percentage",
                     "label-property-taxes": "Yearly Property Taxes",
                     "label-insurance": "Yearly Insurance",
@@ -244,7 +244,19 @@
                     "label-after-repair-value": "After Repair Value (ARV)",
                     "label-selling-cost": "Selling Cost",
                     "calculate-button": "Calculate",
-                    "disclaimer": "Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions."
+                    "disclaimer": "Disclaimer: This calculator provides estimates only. Perform additional analysis and due diligence before making any investment decisions.",
+                    // Tooltip translations
+                    "tooltip-home-price": "How much you're offering to buy the house",
+                    "tooltip-down-payment": "The percentage of the downpayment on your loan.",
+                    "tooltip-interest-rate": "The interest rate of your loan.",
+                    "tooltip-holding-period": "The total months from purchase through renovation to sale.",
+                    "tooltip-renovation-cost": "The total cost of your renovations.",
+                    "tooltip-purchase-closing": "Fees related to the purchase closing, as a percentage of the home price",
+                    "tooltip-property-taxes": "Annual property taxes.",
+                    "tooltip-insurance": "The annual premium for home insurance.",
+                    "tooltip-utilities": "An estimate of your monthly gas, electricity, water, and sewer costs.",
+                    "tooltip-arv": "The estimated sale price of the house after renovations.",
+                    "tooltip-selling-cost": "Fees for closing the sale, calculated as a percentage of the sale price."
                 },
                 es: {
                     "label-home-price": "Precio de la Casa",
@@ -260,14 +272,118 @@
                     "label-after-repair-value": "Valor Después de Reparar (ARV)",
                     "label-selling-cost": "Costo de Venta",
                     "calculate-button": "Calcular",
-                    "disclaimer": "Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones."
+                    "disclaimer": "Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones.",
+                    // Tooltip translations
+                    "tooltip-home-price": "Cuánto estás ofreciendo para comprar la casa",
+                    "tooltip-down-payment": "El porcentaje del pago inicial de tu préstamo.",
+                    "tooltip-interest-rate": "La tasa de interés de tu préstamo.",
+                    "tooltip-holding-period": "El total de meses desde la compra hasta la venta, incluyendo la renovación.",
+                    "tooltip-renovation-cost": "El costo total de tus renovaciones.",
+                    "tooltip-purchase-closing": "Honorarios relacionados con el cierre de la compra, como porcentaje del precio de la casa",
+                    "tooltip-property-taxes": "Impuestos anuales de propiedad.",
+                    "tooltip-insurance": "La prima anual del seguro de la casa.",
+                    "tooltip-utilities": "Una estimación de tus costos mensuales de gas, electricidad, agua y alcantarillado.",
+                    "tooltip-arv": "El precio de venta estimado de la casa después de las renovaciones.",
+                    "tooltip-selling-cost": "Honorarios por cerrar la venta, calculados como porcentaje del precio de venta."
                 }
             };
 
-            Object.keys(translations[language]).forEach(id => {
-                document.getElementById(id).innerText = translations[language][id];
-            });
+            // Update form labels while preserving tooltips
+            for (const id in translations[language]) {
+                if (id.startsWith("label-")) {
+                    const labelElement = document.getElementById(id);
+                    if (labelElement) {
+                        // Find the first text node and update it
+                        let textNodeFound = false;
+                        for (const node of labelElement.childNodes) {
+                            if (node.nodeType === Node.TEXT_NODE) {
+                                node.nodeValue = translations[language][id];
+                                textNodeFound = true;
+                                break;
+                            }
+                        }
+                        
+                        // If no text node found, insert one at the beginning
+                        if (!textNodeFound) {
+                            const textNode = document.createTextNode(translations[language][id]);
+                            labelElement.insertBefore(textNode, labelElement.firstChild);
+                        }
+                    }
+                }
+            }
+            
+            // Update all tooltips directly by ID
+            for (const id in translations[language]) {
+                if (id.startsWith("tooltip-")) {
+                    const tooltipElement = document.getElementById(id);
+                    if (tooltipElement) {
+                        tooltipElement.textContent = translations[language][id];
+                    }
+                }
+            }
+            
+            // Update select options for loan includes renovation
+            if (document.getElementById("loan-includes-renovation")) {
+                const selectElement = document.getElementById("loan-includes-renovation");
+                const options = selectElement.options;
+                
+                if (language === 'en') {
+                    options[0].text = "Yes";
+                    options[1].text = "No";
+                } else {
+                    options[0].text = "Sí";
+                    options[1].text = "No";
+                }
+            }
+            
+            // Update button text
+            document.getElementById("calculate-button").innerText = translations[language]["calculate-button"];
+            
+            // Update placeholder text for inputs
+            const placeholderTranslations = {
+                en: {
+                    "home-price": "E.g., 150000",
+                    "down-payment-percentage": "E.g., 20",
+                    "loan-interest": "E.g., 5",
+                    "holding-period": "E.g., 6",
+                    "renovation-cost": "E.g., 50000",
+                    "purchase-closing-cost": "E.g., 3",
+                    "property-taxes": "E.g., 3000",
+                    "insurance": "E.g., 1200",
+                    "utilities": "E.g., 200",
+                    "after-repair-value": "E.g., 250000",
+                    "selling-cost": "E.g., 6"
+                },
+                es: {
+                    "home-price": "Ej., 150000",
+                    "down-payment-percentage": "Ej., 20",
+                    "loan-interest": "Ej., 5",
+                    "holding-period": "Ej., 6",
+                    "renovation-cost": "Ej., 50000",
+                    "purchase-closing-cost": "Ej., 3",
+                    "property-taxes": "Ej., 3000",
+                    "insurance": "Ej., 1200",
+                    "utilities": "Ej., 200",
+                    "after-repair-value": "Ej., 250000",
+                    "selling-cost": "Ej., 6"
+                }
+            };
+            
+            // Update placeholders
+            for (const id in placeholderTranslations[language]) {
+                const inputElement = document.getElementById(id);
+                if (inputElement) {
+                    inputElement.placeholder = placeholderTranslations[language][id];
+                }
+            }
+            
+            // Update disclaimer text if it exists
+            const disclaimerElement = document.getElementById("disclaimer");
+            if (disclaimerElement) {
+                disclaimerElement.textContent = translations[language]["disclaimer"];
+            }
         }
+        
         function calculate() {
 
             // Check if any required field is empty

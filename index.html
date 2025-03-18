@@ -47,7 +47,7 @@
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
-                                <input type="number" id="home-price" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 150000" required>
+                                <input type="text" id="home-price" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 150000" required>
                             </div>
                         </div>                    
                         
@@ -61,7 +61,7 @@
                                 </span>
                             </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
-                                <input type="number" id="down-payment-percentage" class="w-full outline-none" placeholder="E.g., 20" required>
+                                <input type="text" id="down-payment-percentage" class="w-full outline-none" placeholder="E.g., 20" required>
                                 <span class="ml-2 text-gray-500">% </span>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                 </span>
                             </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
-                                <input type="number" id="loan-interest" class="w-full outline-none" placeholder="E.g., 5" step="0.01" required>
+                                <input type="text" id="loan-interest" class="w-full outline-none" placeholder="E.g., 5" step="0.01" required>
                                 <span class="ml-2 text-gray-500">% </span>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                         The total months from purchase through renovation to sale.
                                     </span>
                             </label>
-                            <input type="number" id="holding-period" class="w-full p-2 border border-gray-300 rounded" placeholder="E.g., 6" required>
+                            <input type="text" id="holding-period" class="w-full p-2 border border-gray-300 rounded" placeholder="E.g., 6" required>
                         </div>
                         <div>
                             <label id="label-renovation-cost" class="block text-gray-700 mb-1 text-sm" for="renovation-cost">Renovation Cost
@@ -106,7 +106,7 @@
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
-                                <input type="number" id="renovation-cost" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 50000" required>
+                                <input type="text" id="renovation-cost" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 50000" required>
                             </div>
                         </div>                        
                         <div class="pt-1">
@@ -118,7 +118,7 @@
                                     </span>
                             </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
-                                <input type="number" id="purchase-closing-cost" class="w-full outline-none" placeholder="E.g., 3" step="0.01" required>
+                                <input type="text" id="purchase-closing-cost" class="w-full outline-none" placeholder="E.g., 3" step="0.01" required>
                                 <span class="ml-2 text-gray-700">%</span>
                             </div>
                         </div>  
@@ -132,7 +132,7 @@
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
-                                <input type="number" id="property-taxes" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 3000" required>
+                                <input type="text" id="property-taxes" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 3000" required>
                             </div>
                         </div>                        
                         <div>
@@ -145,7 +145,7 @@
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
-                                <input type="number" id="insurance" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 1200" required>
+                                <input type="text" id="insurance" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 1200" required>
                             </div>
                         </div>
                         <div class="pt-1">
@@ -158,7 +158,7 @@
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
-                                <input type="number" id="utilities" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 200" required>
+                                <input type="text" id="utilities" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 200" required>
                             </div>
                         </div>
                         <div>
@@ -171,7 +171,7 @@
                             </label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-2 flex items-center text-gray-500">$</span>
-                                <input type="number" id="after-repair-value" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 250000" required>
+                                <input type="text" id="after-repair-value" class="w-full p-2 pl-8 border border-gray-300 rounded" placeholder="E.g., 250000" required>
                             </div>
                         </div>
 
@@ -184,7 +184,7 @@
                                     </span>
                             </label>
                             <div class="flex items-center border border-gray-300 rounded p-2">
-                                <input type="number" id="selling-cost" class="w-full outline-none" placeholder="E.g., 6" step="0.01" required>
+                                <input type="text" id="selling-cost" class="w-full outline-none" placeholder="E.g., 6" step="0.01" required>
                                 <span class="ml-2 text-gray-700">%</span>
                             </div>
                         </div>
@@ -212,13 +212,23 @@
     </div>
     
     <script>
-         document.querySelectorAll("input[type='number']").forEach(input => {
+        document.querySelectorAll("input[type='text']").forEach(input => {
             input.addEventListener("blur", function () {
-                if (this.value && !this.value.includes(".")) {
-                    this.value = parseFloat(this.value).toFixed(2);
+                let value = this.value.replace(/,/g, ''); // Remove existing commas
+                if (!isNaN(value) && value !== '') {
+                    this.value = parseFloat(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            });
+
+            input.addEventListener("input", function () {
+                let value = this.value.replace(/,/g, '').replace(/[^\d.]/g, ''); // Remove non-numeric characters except "."
+                if (!isNaN(value) && value !== '') {
+                    this.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas dynamically
                 }
             });
         });
+
+
        let language = 'en';
 
         document.getElementById("language-toggle").addEventListener("click", function() {
@@ -402,28 +412,51 @@
                 }
             }
 
+            function getNumericValue(id) {
+                let value = document.getElementById(id).value.replace(/,/g, ''); // Remove commas
+                return parseFloat(value) || 0; // Convert to float, return 0 if NaN
+            }
+
             var total_loan_amount;
-            const homePrice = parseFloat(document.getElementById('home-price').value);
-            const downPaymentPercentage = parseFloat(document.getElementById('down-payment-percentage').value) / 100;
+            const homePrice = getNumericValue('home-price');
+            const downPaymentPercentage = getNumericValue('down-payment-percentage') / 100;
             const loanIncludesRenovation = document.getElementById('loan-includes-renovation').value === 'yes';
             const loanIncludesRenovation_v2 = document.getElementById('loan-includes-renovation');
-            const renovationCost = parseFloat(document.getElementById('renovation-cost').value);
-            const loanInterestRate = parseFloat(document.getElementById('loan-interest').value);
-            const holdingPeriod = parseFloat(document.getElementById('holding-period').value);
-            const purchaseClosingCostPercentage = parseFloat(document.getElementById('purchase-closing-cost').value) / 100;
-            const propertyTaxes = parseFloat(document.getElementById('property-taxes').value) / 12;
+            const renovationCost = getNumericValue('renovation-cost');
+            const loanInterestRate = getNumericValue('loan-interest');
+            const holdingPeriod = getNumericValue('holding-period');
+            const purchaseClosingCostPercentage = getNumericValue('purchase-closing-cost') / 100;
+            const propertyTaxes = getNumericValue('property-taxes') / 12;
+            const showPropertyTaxes = getNumericValue('property-taxes');
+            const insurance = getNumericValue('insurance') / 12;
+            const showInsurance = getNumericValue('insurance');
+            const utilities = getNumericValue('utilities');
+            const afterRepairValue = getNumericValue('after-repair-value');
+            const sellingCostPercent = getNumericValue('selling-cost');
 
-            const showPropertyTaxes = parseFloat(document.getElementById('property-taxes').value);
+            // var total_loan_amount;
+            // const homePrice = parseFloat(document.getElementById('home-price').value);
+            // const downPaymentPercentage = parseFloat(document.getElementById('down-payment-percentage').value) / 100;
+            // const loanIncludesRenovation = document.getElementById('loan-includes-renovation').value === 'yes';
+            // const loanIncludesRenovation_v2 = document.getElementById('loan-includes-renovation');
+            // const renovationCost = parseFloat(document.getElementById('renovation-cost').value);
+            // const loanInterestRate = parseFloat(document.getElementById('loan-interest').value);
+            // const holdingPeriod = parseFloat(document.getElementById('holding-period').value);
+            // const purchaseClosingCostPercentage = parseFloat(document.getElementById('purchase-closing-cost').value) / 100;
+            // const propertyTaxes = parseFloat(document.getElementById('property-taxes').value) / 12;
 
-            const insurance = parseFloat(document.getElementById('insurance').value) / 12;
+            // const showPropertyTaxes = parseFloat(document.getElementById('property-taxes').value);
 
-            const showInsurance = parseFloat(document.getElementById('insurance').value);
+            // const insurance = parseFloat(document.getElementById('insurance').value) / 12;
 
-            const utilities = parseFloat(document.getElementById('utilities').value);
-            const afterRepairValue = parseFloat(document.getElementById('after-repair-value').value);
-            const sellingCostPercent = parseFloat(document.getElementById('selling-cost').value);
+            // const showInsurance = parseFloat(document.getElementById('insurance').value);
+
+            // const utilities = parseFloat(document.getElementById('utilities').value);
+            // const afterRepairValue = parseFloat(document.getElementById('after-repair-value').value);
+            // const sellingCostPercent = parseFloat(document.getElementById('selling-cost').value);
             
             var total_cash_needed_v2 =  0;
+            var total_cash_needed_v3 =  0;
 
             if(loanIncludesRenovation_v2.value === 'yes') {
                     // When renovation is included, the loan amount is the sum of home price and renovation cost
@@ -432,6 +465,8 @@
                     // If renovation is not included, the loan amount is just the home price
                     total_loan_amount = homePrice - (homePrice * downPaymentPercentage);
                     total_cash_needed_v2 += renovationCost;
+
+                    total_cash_needed_v3 += renovationCost;
             }
             const loanAmount = loanIncludesRenovation ? (homePrice + renovationCost) : homePrice;
 
@@ -448,6 +483,8 @@
             const total_selling_cost = afterRepairValue * (sellingCostPercent / 100);
             
             total_cash_needed_v2 += downPayment + totalHoldingCost + purchaseClosingCost + total_selling_cost;
+
+            total_cash_needed_v3 += downPayment + totalHoldingCost + purchaseClosingCost;
 
             const monthlyInterest = (loanAmount * (loanInterestRate / 100)) / 12;
 
@@ -466,15 +503,15 @@
             document.getElementById('results-container').style.display = 'block';
             document.getElementById('result').style.display = 'block';
             
-            document.getElementById('result').innerHTML = `<h3>Deal Financial Summary:</h3>
-                <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Total Selling Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
+            // document.getElementById('result').innerHTML = `<h3>Deal Financial Summary:</h3>
+            //     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Total Selling Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            //     <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
 
             // Scenario 1: Base Scenario
             const scenario1SellingCost = baseSellingCost;
@@ -522,7 +559,9 @@
             if (language === 'es') {
                 // Mostrar el Resumen Financiero del Acuerdo
                 document.getElementById('result').innerHTML = `
-                    <h3><strong>Resumen Financiero del Acuerdo</strong></h3><br>
+                    <div class="shadow-lg p-3 bg-white rounded-lg mb-3">
+                        <h3 class="text-center font-bold">RESULTADOS DE GANANCIA Y RETORNO DE INVERSIÓN</h3>
+                    </div>
 
                     <h2><strong>Resumen del Préstamo</strong></h2>
                     <p>Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -530,22 +569,23 @@
                     <p>Pago Mensual de Intereses del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                     <h2><strong>Resumen de Costos de Retención</strong></h2>
-                        * Pago Mensual del Impuesto a la Propiedad ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Pago Mensual del Seguro ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Servicios Públicos Mensuales ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
-                    <hr>
                     <p>Costo Total Mensual de Retención: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Costo Total de Retención del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+                        * Pago Mensual del Impuesto a la Propiedad ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)
+                        * Pago Mensual del Seguro ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                        * Servicios Públicos Mensuales ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br><br>
+
 
                     <h2><strong>Resumen de Costos de Cierre</strong></h2>
                     <p>Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Costo Total de Cierre de Venta: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                     <h2><strong>Resumen de Efectivo Necesario</strong></h2>
+                    <p>Efectivo Total Necesario: $${total_cash_needed_v3.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Costo Total de Retención del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Efectivo Total Necesario: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    
                 `;
 
                 document.getElementById('results-container').style.display = 'block';
@@ -566,7 +606,7 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold mt-6 mb-4">Resultados de Escenarios Potenciales en el Peor Caso</h3>
+                    <h3 class="text-xl font-semibold mt-6 mb-4 text-center">Resultados de Escenarios Potenciales en el Peor Caso</h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Escenario 2 -->
@@ -612,7 +652,10 @@
             } else {
                 // Original English display code remains the same
                 document.getElementById('result').innerHTML = `
-                    <h3><strong>Deal Financial Summary</strong></h3><br>
+                    <div class="shadow-lg p-3 bg-white rounded-lg mb-3">
+                        <h3 class="text-center font-bold">DEAL FINANCIAL SUMMARY</h3>
+                    </div>
+
                     
                     <h2><strong>Loan Summary</strong></h2>
                     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -620,22 +663,22 @@
                     <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                     <h2><strong>Holding Cost Summary</strong></h2>
+                    <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                         * Monthly Property Tax Payment ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
                         * Monthly Insurance Payment ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
-                    <hr>
-                    <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+                        * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br><br>
 
                      <h2><strong>Closing Cost Summary</strong></h2>
                     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Total Selling Closing Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                     <h2><strong>Cash Needed Summary</strong></h2>
+                    <p>Total Cash Needed: $${total_cash_needed_v3.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    
                 `;
 
 
@@ -657,7 +700,7 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold mt-6 mb-4">Potential Worst-Case Scenarios Results</h3>
+                    <h3 class="text-xl font-semibold mt-6 mb-4 text-center">Potential Worst-Case Scenarios Results</h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Scenario 2 -->

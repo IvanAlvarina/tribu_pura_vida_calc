@@ -457,6 +457,7 @@
             
             var total_cash_needed_v2 =  0;
             var total_cash_needed_v3 =  0;
+            var showRenovationCost = 0;
 
             if(loanIncludesRenovation_v2.value === 'yes') {
                     // When renovation is included, the loan amount is the sum of home price and renovation cost
@@ -467,6 +468,7 @@
                     total_cash_needed_v2 += renovationCost;
 
                     total_cash_needed_v3 += renovationCost;
+                    showRenovationCost += renovationCost;
             }
             const loanAmount = loanIncludesRenovation ? (homePrice + renovationCost) : homePrice;
 
@@ -498,7 +500,7 @@
        
             const baseProfit = afterRepairValue - (homePrice + renovationCost) - totalHoldingCost - purchaseClosingCost - total_selling_cost;
            
-            const baseROI = (baseProfit /  total_cash_needed_v2) * 100;
+            const baseROI = (baseProfit /  total_cash_needed_v3) * 100;
 
             document.getElementById('results-container').style.display = 'block';
             document.getElementById('result').style.display = 'block';
@@ -534,7 +536,7 @@
             const scenario2Profit_before = scenario2RenovationCost_v2 +  scenario2ARV_v2 +  scenarioProjectCost_v2;
             const scenario2Profit_b = scenario1Profit - scenario2Profit_before;
             const scenario2Profit = scenario2Profit_b + scenario_arv_new;
-            const scenario2ROI = (scenario2Profit / total_cash_needed_v2) * 100;
+            const scenario2ROI = (scenario2Profit / total_cash_needed_v3) * 100;
             
 // ----------------------------------------------------------------------------------------------------------------------
             // Scenario 3: +20% Renovation Cost, -20% ARV, +4 Months
@@ -659,15 +661,18 @@
                     
                     <h2><strong>Loan Summary</strong></h2>
                     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+                    <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+                    
 
                     <h2><strong>Holding Cost Summary</strong></h2>
                     <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                        * Monthly Property Tax Payment ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Monthly Insurance Payment ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br><br>
+                        <span style="font-size: 0.85em;">
+                            * Monthly Property Tax Payment ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                            * Monthly Insurance Payment ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
+                            * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
+                            * Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                        </span>
+                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                      <h2><strong>Closing Cost Summary</strong></h2>
                     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -675,9 +680,12 @@
 
                     <h2><strong>Cash Needed Summary</strong></h2>
                     <p>Total Cash Needed: $${total_cash_needed_v3.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                        <span style="font-size: 0.85em;">
+                            * Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                            * Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                            * Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                            * Renovation Cost: $${showRenovationCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                        </span>
                     
                 `;
 

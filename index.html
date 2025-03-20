@@ -29,6 +29,7 @@
             
             <div class="text-center mb-6">
                 <button id="language-toggle" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-200" onclick="toggleLanguage()">Español</button>
+                <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition duration-200" onclick="printResults()">Print to PDF</button>
             </div>
             
             <div class="lg:flex lg:space-x-6">
@@ -236,6 +237,10 @@
             updateLanguage();
         });
 
+        function printResults() {
+            window.print();
+        }
+
         function updateLanguage() {
             document.getElementById("language-toggle").innerText = language === 'en' ? "Español" : "English";
 
@@ -282,7 +287,7 @@
                     "label-after-repair-value": "Valor Después de Reparar (ARV)",
                     "label-selling-cost": "Costo de Venta",
                     "calculate-button": "Calcular",
-                    "disclaimer": "Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones.",
+                    "disclaimer": "Descargo de responsabilidad: Esta calculadora solo proporciona estimaciones. Realice análisis adicionales y la debida diligencia antes de tomar cualquier decisión de inversión.",
                     // Tooltip translations
                     "tooltip-home-price": "Cuánto estás ofreciendo para comprar la casa",
                     "tooltip-down-payment": "El porcentaje del pago inicial de tu préstamo.",
@@ -433,27 +438,6 @@
             const utilities = getNumericValue('utilities');
             const afterRepairValue = getNumericValue('after-repair-value');
             const sellingCostPercent = getNumericValue('selling-cost');
-
-            // var total_loan_amount;
-            // const homePrice = parseFloat(document.getElementById('home-price').value);
-            // const downPaymentPercentage = parseFloat(document.getElementById('down-payment-percentage').value) / 100;
-            // const loanIncludesRenovation = document.getElementById('loan-includes-renovation').value === 'yes';
-            // const loanIncludesRenovation_v2 = document.getElementById('loan-includes-renovation');
-            // const renovationCost = parseFloat(document.getElementById('renovation-cost').value);
-            // const loanInterestRate = parseFloat(document.getElementById('loan-interest').value);
-            // const holdingPeriod = parseFloat(document.getElementById('holding-period').value);
-            // const purchaseClosingCostPercentage = parseFloat(document.getElementById('purchase-closing-cost').value) / 100;
-            // const propertyTaxes = parseFloat(document.getElementById('property-taxes').value) / 12;
-
-            // const showPropertyTaxes = parseFloat(document.getElementById('property-taxes').value);
-
-            // const insurance = parseFloat(document.getElementById('insurance').value) / 12;
-
-            // const showInsurance = parseFloat(document.getElementById('insurance').value);
-
-            // const utilities = parseFloat(document.getElementById('utilities').value);
-            // const afterRepairValue = parseFloat(document.getElementById('after-repair-value').value);
-            // const sellingCostPercent = parseFloat(document.getElementById('selling-cost').value);
             
             var total_cash_needed_v2 =  0;
             var total_cash_needed_v3 =  0;
@@ -505,16 +489,6 @@
             document.getElementById('results-container').style.display = 'block';
             document.getElementById('result').style.display = 'block';
             
-            // document.getElementById('result').innerHTML = `<h3>Deal Financial Summary:</h3>
-            //     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Total Selling Cost: $${total_selling_cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            //     <p>Total Cash Needed: $${total_cash_needed_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>`;
-
             // Scenario 1: Base Scenario
             const scenario1SellingCost = baseSellingCost;
             const scenario1Profit = baseProfit;
@@ -567,15 +541,16 @@
 
                     <h2><strong>Resumen del Préstamo</strong></h2>
                     <p>Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Monto Total del Préstamo: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+                    <p>Monto Total del Préstamo: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Pago Mensual de Intereses del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                     <h2><strong>Resumen de Costos de Mantenimiento</strong></h2>
                     <p>Costo Mensual Total de Mantenimiento: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <span style="font-size: 0.85em;">
-                        * Pago Mensual de Impuestos sobre la Propiedad ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Pago Mensual de Seguro ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                        * Servicios Públicos Mensuales ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
-                        * Pago Mensual de Intereses del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                        <div style="margin-left: 100px;">* Pago Mensual de Impuestos sobre la Propiedad ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br></div>
+                        <div style="margin-left: 100px;">* Pago Mensual de Seguro ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br></div>
+                        <div style="margin-left: 100px;">* Servicios Públicos Mensuales ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br></div>
+                        <div style="margin-left: 100px;">* Pago Mensual de Intereses del Préstamo: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
                     </span>
                     <p>Costo Total del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
@@ -586,10 +561,10 @@
                     <h2><strong>Resumen de Efectivo Necesario</strong></h2>
                     <p>Efectivo Total Necesario: $${total_cash_needed_v3.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     <span style="font-size: 0.85em;">
-                        * Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                        * Costo Total del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                        * Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                        * Costo de Renovación: $${showRenovationCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                        <div style="margin-left: 100px;">* Pago Inicial: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                        <div style="margin-left: 100px;">* Costo Total del Proyecto: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                        <div style="margin-left: 100px;">* Costo Total de Cierre de Compra: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                        <div style="margin-left: 100px;">* Costo de Renovación: $${showRenovationCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
                     </span>
                 `;
 
@@ -655,7 +630,9 @@
                     </div>
                 `;
 
-            } else {
+            } 
+            
+            else {
                 // Original English display code remains the same
                 document.getElementById('result').innerHTML = `
                     <div class="shadow-lg p-3 bg-white rounded-lg mb-3">
@@ -665,18 +642,21 @@
                     
                     <h2><strong>Loan Summary</strong></h2>
                     <p>Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
-                    
+                    <p>Total Loan Amount: $${total_loan_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    <p>Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
 
                     <h2><strong>Holding Cost Summary</strong></h2>
                     <p>Total Monthly Holding Cost: $${totalMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                        <span style="font-size: 0.85em;">
-                            * Monthly Property Tax Payment ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                            * Monthly Insurance Payment ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br>
-                            * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br>
-                            * Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                        </span>
+
+                            <span style="font-size: 0.85em;">
+                               <div style="margin-left: 100px;"> * Monthly Property Tax Payment ($${showPropertyTaxes.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br></div>
+                               <div style="margin-left: 100px;"> * Monthly Insurance Payment ($${showInsurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ÷ 12)<br></div>
+                               <div style="margin-left: 100px;"> * Monthly Utilities ($${utilities.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })})<br></div> 
+                               <div style="margin-left: 100px;"> * Monthly Interest Loan Payment: $${monthlyInterest_v2.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                            </span>
+
                     <p>Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p><br>
+
 
                      <h2><strong>Closing Cost Summary</strong></h2>
                     <p>Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -685,10 +665,10 @@
                     <h2><strong>Cash Needed Summary</strong></h2>
                     <p>Total Cash Needed: $${total_cash_needed_v3.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                         <span style="font-size: 0.85em;">
-                            * Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                            * Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                            * Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
-                            * Renovation Cost: $${showRenovationCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>
+                            <div style="margin-left: 100px;">* Down Payment: $${downPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                            <div style="margin-left: 100px;">* Total Project Holding Cost: $${totalHoldingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                            <div style="margin-left: 100px;">* Total Purchasing Closing Cost: $${purchaseClosingCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
+                            <div style="margin-left: 100px;">* Renovation Cost: $${showRenovationCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br></div>
                         </span>
                     
                 `;
